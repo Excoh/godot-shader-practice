@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5qj3f48oeb7o"]
+
+[ext_resource type="Shader" path="res://Shaders/sqrt.gdshader" id="3_obiw3"]
+[ext_resource type="Texture2D" uid="uid://c85ucs11nkc8l" path="res://white_pixel.png" id="4_juoug"]
+[ext_resource type="Shader" path="res://Shaders/pow.gdshader" id="4_vtqc6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vr3kq"]
+shader = ExtResource("4_vtqc6")
+shader_parameter/LINE_COLOR = Color(0, 1, 1, 1)
+shader_parameter/pow_amt = 0.956
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5o7to"]
+shader = ExtResource("3_obiw3")
+shader_parameter/LINE_COLOR = Color(1, 0, 0.0235294, 1)
+shader_parameter/pow_amt = 3.0
+
+[node name="Main" type="Node2D"]
+
+[node name="Pow" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_vr3kq")
+position = Vector2(86, 82)
+scale = Vector2(128, 128)
+texture = ExtResource("4_juoug")
+
+[node name="Sqrt" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_5o7to")
+position = Vector2(87, 217)
+scale = Vector2(128, 128)
+texture = ExtResource("4_juoug")
