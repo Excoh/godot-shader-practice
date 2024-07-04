@@ -1,15 +1,29 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5qj3f48oeb7o"]
+[gd_scene load_steps=16 format=3 uid="uid://c5qj3f48oeb7o"]
 
 [ext_resource type="Shader" path="res://Shaders/sqrt.gdshader" id="3_obiw3"]
+[ext_resource type="Shader" path="res://Shaders/desaturate.gdshader" id="3_oxb5b"]
 [ext_resource type="Texture2D" uid="uid://c85ucs11nkc8l" path="res://Assets/white_pixel.png" id="4_juoug"]
 [ext_resource type="Shader" path="res://Shaders/step.gdshader" id="4_ncchx"]
 [ext_resource type="Shader" path="res://Shaders/pow.gdshader" id="4_vtqc6"]
+[ext_resource type="Texture2D" uid="uid://b3pb34gmh13u8" path="res://Assets/icon.svg" id="4_w7nsf"]
+[ext_resource type="Shader" path="res://Shaders/multi_texture.gdshader" id="5_5m7x2"]
 [ext_resource type="Shader" path="res://Shaders/smoothstep.gdshader" id="5_oehym"]
+[ext_resource type="Texture2D" uid="uid://bqcumhtwnv7qh" path="res://Assets/multi-texture-test.png" id="6_jo6ne"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vr3kq"]
 shader = ExtResource("4_vtqc6")
 shader_parameter/LINE_COLOR = Color(0, 1, 1, 1)
 shader_parameter/pow_amt = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o0j2r"]
+shader = ExtResource("3_oxb5b")
+shader_parameter/LINE_COLOR = Color(0, 1, 0, 1)
+shader_parameter/saturation = 0.306
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pxu1l"]
+shader = ExtResource("5_5m7x2")
+shader_parameter/LINE_COLOR = Color(0, 1, 0, 1)
+shader_parameter/tex_id = 4
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5o7to"]
 shader = ExtResource("3_obiw3")
@@ -19,7 +33,7 @@ shader_parameter/pow_amt = 3.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_41fo0"]
 shader = ExtResource("4_ncchx")
 shader_parameter/LINE_COLOR = Color(0, 1, 0, 1)
-shader_parameter/step_amt = 0.278
+shader_parameter/step_amt = 0.762
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6o73j"]
 shader = ExtResource("5_oehym")
@@ -34,6 +48,16 @@ material = SubResource("ShaderMaterial_vr3kq")
 position = Vector2(86, 82)
 scale = Vector2(128, 128)
 texture = ExtResource("4_juoug")
+
+[node name="Desaturate" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_o0j2r")
+position = Vector2(230, 82)
+texture = ExtResource("4_w7nsf")
+
+[node name="MultiTexture" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_pxu1l")
+position = Vector2(230, 217)
+texture = ExtResource("6_jo6ne")
 
 [node name="Sqrt" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_5o7to")
