@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 #include "res://Shaders/plot.gdshaderinc"
 
-uniform float pow_amt : hint_range(0.25, 10.0) = 3.0;
+uniform float step_amt : hint_range(0.0, 1.0) = 0.5;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -13,7 +13,7 @@ void fragment() {
 	// We flip UV y because it is "backwards" in godot, i.e. from top-to-bottom
 	// Flipping is abs(UV.y-1.0)
 	vec2 st = vec2(UV.x, abs(UV.y-1.0));
-	float y = sqrt(-0.25+abs(sin(st.x + TIME)));
+	float y = step(step_amt, st.x);
 	vec3 col = vec3(y);
 	float pct = plot(st, y);
 	col = (1.0-pct) * col + pct * LINE_COLOR;
