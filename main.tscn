@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c5qj3f48oeb7o"]
+[gd_scene load_steps=18 format=3 uid="uid://c5qj3f48oeb7o"]
 
 [ext_resource type="Shader" path="res://Shaders/sqrt.gdshader" id="3_obiw3"]
 [ext_resource type="Shader" path="res://Shaders/desaturate.gdshader" id="3_oxb5b"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" path="res://Shaders/multi_texture.gdshader" id="5_5m7x2"]
 [ext_resource type="Shader" path="res://Shaders/smoothstep.gdshader" id="5_oehym"]
 [ext_resource type="Texture2D" uid="uid://bqcumhtwnv7qh" path="res://Assets/multi-texture-test.png" id="6_jo6ne"]
+[ext_resource type="Shader" path="res://Shaders/motion_blur.gdshader" id="9_7hbtw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vr3kq"]
 shader = ExtResource("4_vtqc6")
@@ -23,7 +24,7 @@ shader_parameter/saturation = 0.306
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pxu1l"]
 shader = ExtResource("5_5m7x2")
 shader_parameter/LINE_COLOR = Color(0, 1, 0, 1)
-shader_parameter/tex_id = 4
+shader_parameter/tex_id = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5o7to"]
 shader = ExtResource("3_obiw3")
@@ -34,6 +35,11 @@ shader_parameter/pow_amt = 3.0
 shader = ExtResource("4_ncchx")
 shader_parameter/LINE_COLOR = Color(0, 1, 0, 1)
 shader_parameter/step_amt = 0.762
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t431u"]
+shader = ExtResource("9_7hbtw")
+shader_parameter/LINE_COLOR = Color(0, 1, 0, 1)
+shader_parameter/blur_sample = 15.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6o73j"]
 shader = ExtResource("5_oehym")
@@ -70,6 +76,11 @@ material = SubResource("ShaderMaterial_41fo0")
 position = Vector2(87, 357)
 scale = Vector2(128, 128)
 texture = ExtResource("4_juoug")
+
+[node name="MotionBlur" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_t431u")
+position = Vector2(233, 357)
+texture = ExtResource("4_w7nsf")
 
 [node name="Smoothstep" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_6o73j")
