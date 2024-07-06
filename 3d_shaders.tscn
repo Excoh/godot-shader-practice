@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://27jneqkspdv0"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ff01b"]
+subdivide_width = 5
+subdivide_depth = 5
+
+[sub_resource type="SphereMesh" id="SphereMesh_hpg6v"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_kfh3t"]
+
+[node name="3dShaders" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, -2.18557e-07, 5, 0, -5, -2.18557e-07, 0, 0, 0)
+mesh = SubResource("QuadMesh_ff01b")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12114, 0.326458, -1.26871)
+mesh = SubResource("SphereMesh_hpg6v")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08333, 0, -0.331219)
+mesh = SubResource("TorusMesh_kfh3t")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.999998, 0.001168, -0.00134848, 0, 0.755878, 0.654713, 0.00178399, -0.654712, 0.755877, -0.00542026, 1.64547, 1.94288)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.543482, 0.839421, 0, -0.839421, 0.543482, 0, 0, 0)

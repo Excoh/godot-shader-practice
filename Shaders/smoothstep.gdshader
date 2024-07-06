@@ -2,9 +2,6 @@ shader_type canvas_item;
 
 #include "res://Shaders/plot.gdshaderinc"
 
-uniform float left_step : hint_range(0, 0.5) = 0.2;
-uniform float right_step : hint_range(0.5, 1.0) = 0.8;
-
 void vertex() {
 	// Called for every vertex the material is visible on.
 }
