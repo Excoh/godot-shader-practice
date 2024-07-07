@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-#include "res://Shaders/plot.gdshaderinc"
+#include "res://Shaders/2D/plot.gdshaderinc"
 
 uniform float blur_sample : hint_range(1.0, 15.0) = 10.0;
 

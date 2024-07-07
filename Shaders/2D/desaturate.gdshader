@@ -1,8 +1,8 @@
 shader_type canvas_item;
 
-#include "res://Shaders/plot.gdshaderinc"
+#include "res://Shaders/2D/plot.gdshaderinc"
 
-uniform float pow_amt : hint_range(0.25, 10.0) = 3.0;
+uniform float saturation : hint_range(0, 1.0) = 0.5;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -12,12 +12,10 @@ void fragment() {
 	// Called for every pixel the material is visible on.
 	// We flip UV y because it is "backwards" in godot, i.e. from top-to-bottom
 	// Flipping is abs(UV.y-1.0)
-	vec2 st = vec2(UV.x, abs(UV.y-1.0));
-	float y = sqrt(-0.25+abs(sin(st.x + TIME)));
-	vec3 col = vec3(y);
-	float pct = plot(st, y);
-	col = (1.0-pct) * col + pct * LINE_COLOR;
-	COLOR = vec4(col, 1.0);
+	vec4 tex = texture(TEXTURE, UV);
+	float gray = (tex.r+tex.g+tex.b) / 3.0;
+	vec4 grayRGBA = vec4(gray,gray,gray,tex.a);
+	COLOR = mix(grayRGBA, tex, saturation);
 }
 
 void light() {
