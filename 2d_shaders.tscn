@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c5qj3f48oeb7o"]
+[gd_scene load_steps=24 format=3 uid="uid://c5qj3f48oeb7o"]
 
 [ext_resource type="Shader" path="res://Shaders/2D/pow.gdshader" id="1_nytwv"]
 [ext_resource type="Texture2D" uid="uid://c85ucs11nkc8l" path="res://Assets/white_pixel.png" id="2_mmc5g"]
@@ -10,6 +10,7 @@
 [ext_resource type="Shader" path="res://Shaders/2D/step.gdshader" id="8_5imks"]
 [ext_resource type="Shader" path="res://Shaders/2D/motion_blur.gdshader" id="9_8q1re"]
 [ext_resource type="Shader" path="res://Shaders/2D/smooth_circle.gdshader" id="10_gfip4"]
+[ext_resource type="Shader" path="res://Shaders/2D/distance_field.gdshader" id="11_es2qb"]
 [ext_resource type="Shader" path="res://Shaders/2D/hard_circle.gdshader" id="11_nx6j6"]
 [ext_resource type="Shader" path="res://Shaders/2D/smoothstep.gdshader" id="12_1kesi"]
 
@@ -47,6 +48,10 @@ shader_parameter/blur_sample = 14.31
 shader = ExtResource("10_gfip4")
 shader_parameter/left_step = 0.74
 shader_parameter/right_step = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3r8xu"]
+shader = ExtResource("11_es2qb")
+shader_parameter/fract_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yo7fu"]
 shader = ExtResource("11_nx6j6")
@@ -94,6 +99,11 @@ texture = ExtResource("4_2nsqo")
 [node name="SmoothCircle" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_mo88h")
 position = Vector2(233, 500)
+texture = ExtResource("4_2nsqo")
+
+[node name="DistanceField" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_3r8xu")
+position = Vector2(381, 356)
 texture = ExtResource("4_2nsqo")
 
 [node name="HardCircle" type="Sprite2D" parent="."]
