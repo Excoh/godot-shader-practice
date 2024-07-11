@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c5qj3f48oeb7o"]
+[gd_scene load_steps=28 format=3 uid="uid://c5qj3f48oeb7o"]
 
 [ext_resource type="Shader" path="res://Shaders/2D/pow.gdshader" id="1_nytwv"]
 [ext_resource type="Texture2D" uid="uid://c85ucs11nkc8l" path="res://Assets/white_pixel.png" id="2_mmc5g"]
@@ -13,6 +13,8 @@
 [ext_resource type="Shader" path="res://Shaders/2D/distance_field.gdshader" id="11_es2qb"]
 [ext_resource type="Shader" path="res://Shaders/2D/hard_circle.gdshader" id="11_nx6j6"]
 [ext_resource type="Shader" path="res://Shaders/2D/smoothstep.gdshader" id="12_1kesi"]
+[ext_resource type="Shader" path="res://Shaders/2D/fade_horizontal.gdshader" id="13_yn8fx"]
+[ext_resource type="Shader" path="res://Shaders/2D/fade_vertical.gdshader" id="14_x217l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vr3kq"]
 shader = ExtResource("1_nytwv")
@@ -56,6 +58,14 @@ shader_parameter/fract_count = 2
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yo7fu"]
 shader = ExtResource("11_nx6j6")
 shader_parameter/radius = 0.73
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e30ta"]
+shader = ExtResource("13_yn8fx")
+shader_parameter/fade_amount = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ftyex"]
+shader = ExtResource("14_x217l")
+shader_parameter/fade_amount = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6o73j"]
 shader = ExtResource("12_1kesi")
@@ -109,6 +119,16 @@ texture = ExtResource("4_2nsqo")
 [node name="HardCircle" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_yo7fu")
 position = Vector2(381, 500)
+texture = ExtResource("4_2nsqo")
+
+[node name="FadeHorizontal" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_e30ta")
+position = Vector2(381, 216)
+texture = ExtResource("4_2nsqo")
+
+[node name="FadeVertical" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ftyex")
+position = Vector2(381, 77)
 texture = ExtResource("4_2nsqo")
 
 [node name="Smoothstep" type="Sprite2D" parent="."]
