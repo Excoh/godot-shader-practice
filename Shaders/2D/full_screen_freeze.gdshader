@@ -1,8 +1,8 @@
 shader_type canvas_item;
 
+uniform sampler2D background : hint_screen_texture, repeat_disable, filter_linear;
 uniform sampler2D ice_texture;
 uniform sampler2D noise;
-uniform sampler2D background_texture;
 uniform float left_step : hint_range(0, 1.0) = 0.45;
 uniform float right_step : hint_range(0, 1.0) = 0.7;
 
@@ -13,11 +13,12 @@ void vertex() {
 void fragment() {
 	// Called for every pixel the material is visible on.
 	vec4 tex = texture(ice_texture, UV);
-	vec4 forest_tex = texture(background_texture, UV);
+	vec4 background_tex = textureLod(background, SCREEN_UV, 1.0);
 	vec4 noise_tex = texture(noise, UV);
+	tex = mix(tex, noise_tex, 0.15);
 	float circle = distance(SCREEN_UV, vec2(0.5));
 	float col = smoothstep(left_step, right_step, circle);
-	vec3 final_col = mix(forest_tex.rgb, tex.rgb, 0.5) * col;
+	vec3 final_col = mix(background_tex.rgb, tex.rgb, col/2.) * col;
 	COLOR = vec4(final_col, col);
 }
 

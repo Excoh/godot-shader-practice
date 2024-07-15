@@ -16,7 +16,6 @@ shader_parameter/left_step = 0.45
 shader_parameter/right_step = 0.7
 shader_parameter/ice_texture = ExtResource("3_52815")
 shader_parameter/noise = SubResource("NoiseTexture2D_wvgro")
-shader_parameter/background_texture = ExtResource("2_dx8lv")
 
 [node name="FreezeFrameShader" type="Node2D"]
 

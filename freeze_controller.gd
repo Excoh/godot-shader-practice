@@ -4,8 +4,11 @@ var leftStep: float
 var rightStep: float
 var distanceLeftStep: float
 var distanceRightStep: float
-var targetLeftStep: float = 0.2
-var targetRightStep: float = 0.6
+# Controls the inner circle of the freeze shader
+var targetLeftStep: float = 0.25
+# Controls the outer circle of the freeze shader
+var targetRightStep: float = 0.65
+# Time it takes to reach the target steps in seconds
 var timeToFreezeInSeconds: float = 0.5
 var isFreezing: bool = false
 
