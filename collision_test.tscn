@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://jmctmikpyyke"]
+
+[ext_resource type="Texture2D" uid="uid://c85ucs11nkc8l" path="res://Assets/white_pixel.png" id="1_0vdtd"]
+[ext_resource type="Script" path="res://player_movement.gd" id="2_jw8ti"]
+[ext_resource type="Texture2D" uid="uid://b3pb34gmh13u8" path="res://Assets/icon.svg" id="3_8u7jc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8n0g"]
+size = Vector2(1.00917, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4myu7"]
+size = Vector2(37, 38)
+
+[node name="CollisionTest" type="Node2D"]
+
+[node name="WhiteTeam" type="StaticBody2D" parent="."]
+position = Vector2(233, 179)
+scale = Vector2(109, 36)
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="WhiteTeam"]
+texture = ExtResource("1_0vdtd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WhiteTeam"]
+position = Vector2(-3.57628e-07, 0)
+shape = SubResource("RectangleShape2D_s8n0g")
+
+[node name="BlackTeam" type="StaticBody2D" parent="."]
+position = Vector2(401, 185)
+scale = Vector2(109, 36)
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="BlackTeam"]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("1_0vdtd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlackTeam"]
+position = Vector2(-3.57628e-07, 0)
+shape = SubResource("RectangleShape2D_s8n0g")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(125, 132)
+collision_mask = 4
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("2_jw8ti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_4myu7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_8u7jc")
