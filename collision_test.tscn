@@ -1,14 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://jmctmikpyyke"]
+[gd_scene load_steps=9 format=3 uid="uid://jmctmikpyyke"]
 
 [ext_resource type="Texture2D" uid="uid://c85ucs11nkc8l" path="res://Assets/white_pixel.png" id="1_0vdtd"]
 [ext_resource type="Script" path="res://player_movement.gd" id="2_jw8ti"]
-[ext_resource type="Texture2D" uid="uid://b3pb34gmh13u8" path="res://Assets/icon.svg" id="3_8u7jc"]
+[ext_resource type="Script" path="res://collision_controller.gd" id="2_sdar0"]
+[ext_resource type="Texture2D" uid="uid://cgj751g831ih1" path="res://Assets/white-circle-256x256.png" id="3_gvens"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8n0g"]
-size = Vector2(1.00917, 1)
+size = Vector2(0.999507, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4myu7"]
-size = Vector2(37, 38)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kfqnf"]
+size = Vector2(0.967421, 0.985305)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xkpel"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_22koi"]
+radius = 12.7737
 
 [node name="CollisionTest" type="Node2D"]
 
@@ -16,6 +23,7 @@ size = Vector2(37, 38)
 position = Vector2(233, 179)
 scale = Vector2(109, 36)
 collision_layer = 4
+script = ExtResource("2_sdar0")
 
 [node name="Sprite2D" type="Sprite2D" parent="WhiteTeam"]
 texture = ExtResource("1_0vdtd")
@@ -23,6 +31,15 @@ texture = ExtResource("1_0vdtd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WhiteTeam"]
 position = Vector2(-3.57628e-07, 0)
 shape = SubResource("RectangleShape2D_s8n0g")
+
+[node name="Area2D" type="Area2D" parent="WhiteTeam"]
+scale = Vector2(1, 1)
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WhiteTeam/Area2D"]
+position = Vector2(0.0013535, 0.000896931)
+scale = Vector2(1.05, 1.05)
+shape = SubResource("RectangleShape2D_kfqnf")
 
 [node name="BlackTeam" type="StaticBody2D" parent="."]
 position = Vector2(401, 185)
@@ -37,18 +54,38 @@ texture = ExtResource("1_0vdtd")
 position = Vector2(-3.57628e-07, 0)
 shape = SubResource("RectangleShape2D_s8n0g")
 
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(125, 132)
-collision_mask = 4
+[node name="BlackPlayer" type="CharacterBody2D" parent="."]
+position = Vector2(496, 109)
+collision_mask = 12
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("2_jw8ti")
+isWhiteTeam = false
+
+[node name="Sprite2D" type="Sprite2D" parent="BlackPlayer"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_gvens")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlackPlayer"]
+shape = SubResource("CircleShape2D_xkpel")
+
+[node name="Area2D" type="Area2D" parent="BlackPlayer"]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlackPlayer/Area2D"]
+shape = SubResource("CircleShape2D_22koi")
+
+[node name="WhitePlayer" type="CharacterBody2D" parent="."]
+position = Vector2(90, 103)
+collision_mask = 2
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("2_jw8ti")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_4myu7")
+[node name="Sprite2D" type="Sprite2D" parent="WhitePlayer"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_gvens")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-modulate = Color(0, 1, 0, 1)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("3_8u7jc")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WhitePlayer"]
+shape = SubResource("CircleShape2D_xkpel")
