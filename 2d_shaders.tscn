@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c5qj3f48oeb7o"]
+[gd_scene load_steps=32 format=3 uid="uid://c5qj3f48oeb7o"]
 
 [ext_resource type="Shader" path="res://Shaders/2D/pow.gdshader" id="1_nytwv"]
 [ext_resource type="Texture2D" uid="uid://c85ucs11nkc8l" path="res://Assets/white_pixel.png" id="2_mmc5g"]
@@ -16,6 +16,7 @@
 [ext_resource type="Shader" path="res://Shaders/2D/fade_horizontal.gdshader" id="13_yn8fx"]
 [ext_resource type="Shader" path="res://Shaders/2D/fade_vertical.gdshader" id="14_x217l"]
 [ext_resource type="Shader" path="res://Shaders/2D/moving_pixels.gdshader" id="16_orbsa"]
+[ext_resource type="Shader" path="res://Shaders/2D/fractal_grid.gdshader" id="17_xnp8i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vr3kq"]
 shader = ExtResource("1_nytwv")
@@ -74,6 +75,9 @@ shader_parameter/LINE_COLOR = Color(0, 1, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_emvss"]
 shader = ExtResource("16_orbsa")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3mr37"]
+shader = ExtResource("17_xnp8i")
 
 [node name="Main" type="Node2D"]
 
@@ -144,5 +148,11 @@ texture = ExtResource("2_mmc5g")
 [node name="MovingPixels" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_emvss")
 position = Vector2(529, 499)
+scale = Vector2(128, 128)
+texture = ExtResource("2_mmc5g")
+
+[node name="MovingPixels2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_3mr37")
+position = Vector2(529, 357)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
