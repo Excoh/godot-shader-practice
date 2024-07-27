@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c5qj3f48oeb7o"]
+[gd_scene load_steps=35 format=3 uid="uid://c5qj3f48oeb7o"]
 
 [ext_resource type="Shader" path="res://Shaders/2D/pow.gdshader" id="1_nytwv"]
 [ext_resource type="Texture2D" uid="uid://c85ucs11nkc8l" path="res://Assets/white_pixel.png" id="2_mmc5g"]
@@ -17,11 +17,15 @@
 [ext_resource type="Shader" path="res://Shaders/2D/fade_vertical.gdshader" id="14_x217l"]
 [ext_resource type="Shader" path="res://Shaders/2D/moving_pixels.gdshader" id="16_orbsa"]
 [ext_resource type="Shader" path="res://Shaders/2D/fractal_grid.gdshader" id="17_xnp8i"]
+[ext_resource type="Script" path="res://Scripts/shader_label_controller.gd" id="18_pb0y0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vr3kq"]
 shader = ExtResource("1_nytwv")
 shader_parameter/LINE_COLOR = Color(0, 1, 1, 1)
 shader_parameter/pow_amt = 2.171
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o51gv"]
+size = Vector2(1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o0j2r"]
 shader = ExtResource("3_7aqny")
@@ -55,7 +59,7 @@ shader_parameter/right_step = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3r8xu"]
 shader = ExtResource("11_es2qb")
-shader_parameter/fract_count = 2
+shader_parameter/fract_count = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yo7fu"]
 shader = ExtResource("11_nx6j6")
@@ -79,6 +83,13 @@ shader = ExtResource("16_orbsa")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3mr37"]
 shader = ExtResource("17_xnp8i")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wb4bw"]
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 5.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 0.509804)
+
 [node name="Main" type="Node2D"]
 
 [node name="Pow" type="Sprite2D" parent="."]
@@ -87,10 +98,21 @@ position = Vector2(86, 82)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
 
+[node name="Pow" type="Area2D" parent="Pow"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pow/Pow"]
+shape = SubResource("RectangleShape2D_o51gv")
+
 [node name="Desaturate" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_o0j2r")
 position = Vector2(230, 82)
 texture = ExtResource("4_2nsqo")
+
+[node name="Desaturate" type="Area2D" parent="Desaturate"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desaturate/Desaturate"]
+shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="MultiTexture" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_pxu1l")
@@ -151,8 +173,25 @@ position = Vector2(529, 499)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
 
-[node name="MovingPixels2" type="Sprite2D" parent="."]
+[node name="FractalGrid" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_3mr37")
 position = Vector2(529, 357)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
+
+[node name="ShaderLabelController" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("18_pb0y0")
+
+[node name="ShaderLabel" type="RichTextLabel" parent="ShaderLabelController"]
+layout_mode = 0
+offset_right = 101.0
+offset_bottom = 23.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_wb4bw")
+text = "Shader Label"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
