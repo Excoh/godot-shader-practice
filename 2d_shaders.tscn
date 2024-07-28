@@ -1,8 +1,9 @@
-[gd_scene load_steps=35 format=3 uid="uid://c5qj3f48oeb7o"]
+[gd_scene load_steps=36 format=3 uid="uid://c5qj3f48oeb7o"]
 
 [ext_resource type="Shader" path="res://Shaders/2D/pow.gdshader" id="1_nytwv"]
 [ext_resource type="Texture2D" uid="uid://c85ucs11nkc8l" path="res://Assets/white_pixel.png" id="2_mmc5g"]
 [ext_resource type="Shader" path="res://Shaders/2D/desaturate.gdshader" id="3_7aqny"]
+[ext_resource type="Script" path="res://shader_name_controller.gd" id="3_c4huw"]
 [ext_resource type="Texture2D" uid="uid://b3pb34gmh13u8" path="res://Assets/icon.svg" id="4_2nsqo"]
 [ext_resource type="Shader" path="res://Shaders/2D/multi_texture.gdshader" id="5_jxn0a"]
 [ext_resource type="Texture2D" uid="uid://bqcumhtwnv7qh" path="res://Assets/multi-texture-test.png" id="6_rfig3"]
@@ -97,89 +98,171 @@ material = SubResource("ShaderMaterial_vr3kq")
 position = Vector2(86, 82)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
+script = ExtResource("3_c4huw")
 
-[node name="Pow" type="Area2D" parent="Pow"]
+[node name="Area2D" type="Area2D" parent="Pow"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pow/Pow"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pow/Area2D"]
 shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="Desaturate" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_o0j2r")
 position = Vector2(230, 82)
 texture = ExtResource("4_2nsqo")
+script = ExtResource("3_c4huw")
 
-[node name="Desaturate" type="Area2D" parent="Desaturate"]
+[node name="Area2D" type="Area2D" parent="Desaturate"]
 scale = Vector2(128, 128)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Desaturate/Desaturate"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desaturate/Area2D"]
 shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="MultiTexture" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_pxu1l")
 position = Vector2(230, 217)
 texture = ExtResource("6_rfig3")
+script = ExtResource("3_c4huw")
+
+[node name="Area2D" type="Area2D" parent="MultiTexture"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MultiTexture/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="Sqrt" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_5o7to")
 position = Vector2(87, 217)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
+script = ExtResource("3_c4huw")
+
+[node name="Area2D" type="Area2D" parent="Sqrt"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sqrt/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="Step" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_41fo0")
 position = Vector2(87, 357)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
+script = ExtResource("3_c4huw")
+
+[node name="Area2D" type="Area2D" parent="Step"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Step/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="MotionBlur" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_t431u")
 position = Vector2(233, 357)
 texture = ExtResource("4_2nsqo")
+script = ExtResource("3_c4huw")
+
+[node name="Area2D" type="Area2D" parent="MotionBlur"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MotionBlur/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="SmoothCircle" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_mo88h")
 position = Vector2(233, 500)
 texture = ExtResource("4_2nsqo")
+script = ExtResource("3_c4huw")
+
+[node name="Area2D" type="Area2D" parent="SmoothCircle"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SmoothCircle/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="DistanceField" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_3r8xu")
 position = Vector2(381, 356)
 texture = ExtResource("4_2nsqo")
+script = ExtResource("3_c4huw")
+
+[node name="Area2D" type="Area2D" parent="DistanceField"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DistanceField/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="HardCircle" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_yo7fu")
 position = Vector2(381, 500)
 texture = ExtResource("4_2nsqo")
+script = ExtResource("3_c4huw")
+
+[node name="Area2D" type="Area2D" parent="HardCircle"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HardCircle/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="FadeHorizontal" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_e30ta")
 position = Vector2(381, 216)
 texture = ExtResource("4_2nsqo")
+script = ExtResource("3_c4huw")
+
+[node name="Area2D" type="Area2D" parent="FadeHorizontal"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FadeHorizontal/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="FadeVertical" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_ftyex")
 position = Vector2(381, 77)
 texture = ExtResource("4_2nsqo")
+script = ExtResource("3_c4huw")
+
+[node name="Area2D" type="Area2D" parent="FadeVertical"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FadeVertical/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="Smoothstep" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_6o73j")
 position = Vector2(87, 499)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
+script = ExtResource("3_c4huw")
+
+[node name="Area2D" type="Area2D" parent="Smoothstep"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Smoothstep/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="MovingPixels" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_emvss")
 position = Vector2(529, 499)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
+script = ExtResource("3_c4huw")
+
+[node name="Area2D" type="Area2D" parent="MovingPixels"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovingPixels/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="FractalGrid" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_3mr37")
 position = Vector2(529, 357)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
+script = ExtResource("3_c4huw")
+
+[node name="Area2D" type="Area2D" parent="FractalGrid"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FractalGrid/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="ShaderLabelController" type="Control" parent="."]
+editor_description = "Displays a shader label when hovering over a tile in-game. Ideally should render on top of all of the shaders."
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

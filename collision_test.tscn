@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://jmctmikpyyke"]
 
 [ext_resource type="Texture2D" uid="uid://c85ucs11nkc8l" path="res://Assets/white_pixel.png" id="1_0vdtd"]
-[ext_resource type="Script" path="res://player_movement.gd" id="2_jw8ti"]
-[ext_resource type="Script" path="res://collision_controller.gd" id="2_sdar0"]
+[ext_resource type="Script" path="res://Scripts/player_movement.gd" id="2_jw8ti"]
+[ext_resource type="Script" path="res://Scripts/collision_controller.gd" id="2_sdar0"]
 [ext_resource type="Texture2D" uid="uid://cgj751g831ih1" path="res://Assets/white-circle-256x256.png" id="3_gvens"]
-[ext_resource type="Script" path="res://walls.gd" id="5_nibn8"]
+[ext_resource type="Script" path="res://Scripts/walls.gd" id="5_nibn8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8n0g"]
 size = Vector2(0.999507, 1)

@@ -3,7 +3,7 @@
 [ext_resource type="Shader" path="res://Shaders/2D/full_screen_freeze.gdshader" id="1_5ukwk"]
 [ext_resource type="Texture2D" uid="uid://bb4ndnllmsej6" path="res://Assets/forest_landscape.png" id="2_dx8lv"]
 [ext_resource type="Texture2D" uid="uid://p8oupoh4qjmh" path="res://Assets/freeze_texture.jpg" id="3_52815"]
-[ext_resource type="Script" path="res://freeze_controller.gd" id="4_3ek83"]
+[ext_resource type="Script" path="res://Scripts/freeze_controller.gd" id="4_3ek83"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hdppn"]
 shader = ExtResource("1_5ukwk")
