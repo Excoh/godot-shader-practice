@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c5qj3f48oeb7o"]
+[gd_scene load_steps=38 format=3 uid="uid://c5qj3f48oeb7o"]
 
 [ext_resource type="Shader" path="res://Shaders/2D/pow.gdshader" id="1_nytwv"]
 [ext_resource type="Texture2D" uid="uid://c85ucs11nkc8l" path="res://Assets/white_pixel.png" id="2_mmc5g"]
@@ -19,6 +19,7 @@
 [ext_resource type="Shader" path="res://Shaders/2D/moving_pixels.gdshader" id="16_orbsa"]
 [ext_resource type="Shader" path="res://Shaders/2D/fractal_grid.gdshader" id="17_xnp8i"]
 [ext_resource type="Script" path="res://Scripts/shader_label_controller.gd" id="18_pb0y0"]
+[ext_resource type="Shader" path="res://Shaders/2D/fractal_circles.gdshader" id="19_j4xqo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vr3kq"]
 shader = ExtResource("1_nytwv")
@@ -83,6 +84,11 @@ shader = ExtResource("16_orbsa")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3mr37"]
 shader = ExtResource("17_xnp8i")
+shader_parameter/grid_size = Vector2i(3, 3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ue3sb"]
+shader = ExtResource("19_j4xqo")
+shader_parameter/grid_size = Vector2(3, 3)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wb4bw"]
 content_margin_left = 5.0
@@ -259,6 +265,18 @@ script = ExtResource("3_c4huw")
 [node name="Area2D" type="Area2D" parent="FractalGrid"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FractalGrid/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="FractalCircles" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ue3sb")
+position = Vector2(529, 216)
+scale = Vector2(128, 128)
+texture = ExtResource("2_mmc5g")
+script = ExtResource("3_c4huw")
+
+[node name="Area2D" type="Area2D" parent="FractalCircles"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FractalCircles/Area2D"]
 shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="ShaderLabelController" type="Control" parent="."]
