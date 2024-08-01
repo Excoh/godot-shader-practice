@@ -101,7 +101,7 @@ noise = SubResource("FastNoiseLite_x33uw")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_saacv"]
 shader = ExtResource("20_nij0j")
 shader_parameter/dissolve_amount = 0.5
-shader_parameter/edge_width = 2.5
+shader_parameter/edge_width = 2.0
 shader_parameter/edge_color = Color(1, 0, 0, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_vgfkc")
 
@@ -320,7 +320,6 @@ metadata/_edit_group_ = true
 scale = Vector2(128, 128)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dissolve/Area2D"]
-visible = false
 shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="ShaderLabelController" type="Control" parent="."]
