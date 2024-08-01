@@ -13,7 +13,7 @@ float circle(vec2 st) {
 	vec2 l = st - vec2(0.5);
 	// Here's another way to create a circle without using the distance
 	// and length functions. By using dot()
-	return 1. - (dot(l,l)*4.0);
+	return 1.-(dot(l,l)*4.);
 }
 
 void vertex() {

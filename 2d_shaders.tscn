@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c5qj3f48oeb7o"]
+[gd_scene load_steps=42 format=3 uid="uid://c5qj3f48oeb7o"]
 
 [ext_resource type="Shader" path="res://Shaders/2D/pow.gdshader" id="1_nytwv"]
 [ext_resource type="Texture2D" uid="uid://c85ucs11nkc8l" path="res://Assets/white_pixel.png" id="2_mmc5g"]
@@ -20,6 +20,7 @@
 [ext_resource type="Shader" path="res://Shaders/2D/fractal_grid.gdshader" id="17_xnp8i"]
 [ext_resource type="Script" path="res://Scripts/shader_label_controller.gd" id="18_pb0y0"]
 [ext_resource type="Shader" path="res://Shaders/2D/fractal_circles.gdshader" id="19_j4xqo"]
+[ext_resource type="Shader" path="res://Shaders/2D/dissolve.gdshader" id="20_nij0j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vr3kq"]
 shader = ExtResource("1_nytwv")
@@ -69,11 +70,11 @@ shader_parameter/radius = 0.73
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e30ta"]
 shader = ExtResource("13_yn8fx")
-shader_parameter/fade_amount = 0.0
+shader_parameter/fade_amount = 0.25
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ftyex"]
 shader = ExtResource("14_x217l")
-shader_parameter/fade_amount = 0.0
+shader_parameter/fade_amount = 0.25
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6o73j"]
 shader = ExtResource("12_1kesi")
@@ -88,7 +89,19 @@ shader_parameter/grid_size = Vector2i(3, 3)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ue3sb"]
 shader = ExtResource("19_j4xqo")
-shader_parameter/grid_size = Vector2(3, 3)
+shader_parameter/grid_size = Vector2(5, 5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x33uw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vgfkc"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_x33uw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_saacv"]
+shader = ExtResource("20_nij0j")
+shader_parameter/dissolve_amount = 0.5
+shader_parameter/noise = SubResource("NoiseTexture2D_vgfkc")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wb4bw"]
 content_margin_left = 5.0
@@ -105,6 +118,7 @@ position = Vector2(86, 82)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
 script = ExtResource("3_c4huw")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="Pow"]
 
@@ -116,6 +130,7 @@ material = SubResource("ShaderMaterial_o0j2r")
 position = Vector2(230, 82)
 texture = ExtResource("4_2nsqo")
 script = ExtResource("3_c4huw")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="Desaturate"]
 scale = Vector2(128, 128)
@@ -128,6 +143,7 @@ material = SubResource("ShaderMaterial_pxu1l")
 position = Vector2(230, 217)
 texture = ExtResource("6_rfig3")
 script = ExtResource("3_c4huw")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="MultiTexture"]
 scale = Vector2(128, 128)
@@ -141,6 +157,7 @@ position = Vector2(87, 217)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
 script = ExtResource("3_c4huw")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="Sqrt"]
 
@@ -153,6 +170,7 @@ position = Vector2(87, 357)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
 script = ExtResource("3_c4huw")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="Step"]
 
@@ -164,6 +182,7 @@ material = SubResource("ShaderMaterial_t431u")
 position = Vector2(233, 357)
 texture = ExtResource("4_2nsqo")
 script = ExtResource("3_c4huw")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="MotionBlur"]
 scale = Vector2(128, 128)
@@ -176,6 +195,7 @@ material = SubResource("ShaderMaterial_mo88h")
 position = Vector2(233, 500)
 texture = ExtResource("4_2nsqo")
 script = ExtResource("3_c4huw")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="SmoothCircle"]
 scale = Vector2(128, 128)
@@ -188,6 +208,7 @@ material = SubResource("ShaderMaterial_3r8xu")
 position = Vector2(381, 356)
 texture = ExtResource("4_2nsqo")
 script = ExtResource("3_c4huw")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="DistanceField"]
 scale = Vector2(128, 128)
@@ -200,6 +221,7 @@ material = SubResource("ShaderMaterial_yo7fu")
 position = Vector2(381, 500)
 texture = ExtResource("4_2nsqo")
 script = ExtResource("3_c4huw")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="HardCircle"]
 scale = Vector2(128, 128)
@@ -212,6 +234,7 @@ material = SubResource("ShaderMaterial_e30ta")
 position = Vector2(381, 216)
 texture = ExtResource("4_2nsqo")
 script = ExtResource("3_c4huw")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="FadeHorizontal"]
 scale = Vector2(128, 128)
@@ -221,9 +244,10 @@ shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="FadeVertical" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_ftyex")
-position = Vector2(381, 77)
+position = Vector2(381, 82)
 texture = ExtResource("4_2nsqo")
 script = ExtResource("3_c4huw")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="FadeVertical"]
 scale = Vector2(128, 128)
@@ -237,6 +261,7 @@ position = Vector2(87, 499)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
 script = ExtResource("3_c4huw")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="Smoothstep"]
 
@@ -249,6 +274,7 @@ position = Vector2(529, 499)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
 script = ExtResource("3_c4huw")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="MovingPixels"]
 
@@ -261,6 +287,7 @@ position = Vector2(529, 357)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
 script = ExtResource("3_c4huw")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="FractalGrid"]
 
@@ -269,14 +296,28 @@ shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="FractalCircles" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_ue3sb")
-position = Vector2(529, 216)
+position = Vector2(529, 217)
 scale = Vector2(128, 128)
 texture = ExtResource("2_mmc5g")
 script = ExtResource("3_c4huw")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="FractalCircles"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FractalCircles/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="Dissolve" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_saacv")
+position = Vector2(529, 82)
+texture = ExtResource("4_2nsqo")
+script = ExtResource("3_c4huw")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="Dissolve"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dissolve/Area2D"]
 shape = SubResource("RectangleShape2D_o51gv")
 
 [node name="ShaderLabelController" type="Control" parent="."]

@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform float fade_amount : hint_range(0.,1.) = 0.0;
+uniform float fade_amount : hint_range(0.,1.) = 0.25;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
