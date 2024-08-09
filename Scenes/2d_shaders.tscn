@@ -1,0 +1,341 @@
+[gd_scene load_steps=42 format=3 uid="uid://c5qj3f48oeb7o"]
+
+[ext_resource type="Shader" path="res://Shaders/2D/pow.gdshader" id="1_qecjw"]
+[ext_resource type="Texture2D" uid="uid://c85ucs11nkc8l" path="res://Assets/white_pixel.png" id="2_pt6sf"]
+[ext_resource type="Script" path="res://Scripts/shader_name_controller.gd" id="3_01tr2"]
+[ext_resource type="Shader" path="res://Shaders/2D/desaturate.gdshader" id="4_41tp3"]
+[ext_resource type="Texture2D" uid="uid://b3pb34gmh13u8" path="res://Assets/icon.svg" id="5_1ecwo"]
+[ext_resource type="Shader" path="res://Shaders/2D/multi_texture.gdshader" id="6_mpsxf"]
+[ext_resource type="Texture2D" uid="uid://bqcumhtwnv7qh" path="res://Assets/multi-texture-test.png" id="7_8socp"]
+[ext_resource type="Shader" path="res://Shaders/2D/sqrt.gdshader" id="8_2ntem"]
+[ext_resource type="Shader" path="res://Shaders/2D/step.gdshader" id="9_jhjt8"]
+[ext_resource type="Shader" path="res://Shaders/2D/motion_blur.gdshader" id="10_p6fig"]
+[ext_resource type="Shader" path="res://Shaders/2D/smooth_circle.gdshader" id="11_if3dy"]
+[ext_resource type="Shader" path="res://Shaders/2D/distance_field.gdshader" id="12_88llr"]
+[ext_resource type="Shader" path="res://Shaders/2D/hard_circle.gdshader" id="13_phk4y"]
+[ext_resource type="Shader" path="res://Shaders/2D/fade_horizontal.gdshader" id="14_qx6gw"]
+[ext_resource type="Shader" path="res://Shaders/2D/fade_vertical.gdshader" id="15_bt5iv"]
+[ext_resource type="Shader" path="res://Shaders/2D/smoothstep.gdshader" id="16_ilw8q"]
+[ext_resource type="Shader" path="res://Shaders/2D/moving_pixels.gdshader" id="17_dak12"]
+[ext_resource type="Shader" path="res://Shaders/2D/fractal_grid.gdshader" id="18_btqhu"]
+[ext_resource type="Shader" path="res://Shaders/2D/fractal_circles.gdshader" id="19_ay8mw"]
+[ext_resource type="Shader" path="res://Shaders/2D/dissolve.gdshader" id="20_kin5e"]
+[ext_resource type="Script" path="res://Scripts/shader_label_controller.gd" id="21_xbf5r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vr3kq"]
+shader = ExtResource("1_qecjw")
+shader_parameter/LINE_COLOR = Color(0, 1, 1, 1)
+shader_parameter/pow_amt = 2.171
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o51gv"]
+size = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o0j2r"]
+shader = ExtResource("4_41tp3")
+shader_parameter/LINE_COLOR = Color(0, 1, 0, 1)
+shader_parameter/saturation = 0.52
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pxu1l"]
+shader = ExtResource("6_mpsxf")
+shader_parameter/LINE_COLOR = Color(0, 1, 0, 1)
+shader_parameter/tex_id = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5o7to"]
+shader = ExtResource("8_2ntem")
+shader_parameter/LINE_COLOR = Color(1, 0, 0.0235294, 1)
+shader_parameter/pow_amt = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_41fo0"]
+shader = ExtResource("9_jhjt8")
+shader_parameter/LINE_COLOR = Color(0, 1, 0, 1)
+shader_parameter/step_amt = 0.517
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t431u"]
+shader = ExtResource("10_p6fig")
+shader_parameter/LINE_COLOR = Color(0, 1, 0, 1)
+shader_parameter/blur_sample = 14.31
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mo88h"]
+shader = ExtResource("11_if3dy")
+shader_parameter/left_step = 0.74
+shader_parameter/right_step = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3r8xu"]
+shader = ExtResource("12_88llr")
+shader_parameter/fract_count = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yo7fu"]
+shader = ExtResource("13_phk4y")
+shader_parameter/radius = 0.73
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e30ta"]
+shader = ExtResource("14_qx6gw")
+shader_parameter/fade_amount = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ftyex"]
+shader = ExtResource("15_bt5iv")
+shader_parameter/fade_amount = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6o73j"]
+shader = ExtResource("16_ilw8q")
+shader_parameter/LINE_COLOR = Color(0, 1, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_emvss"]
+shader = ExtResource("17_dak12")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3mr37"]
+shader = ExtResource("18_btqhu")
+shader_parameter/grid_size = Vector2i(3, 3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ue3sb"]
+shader = ExtResource("19_ay8mw")
+shader_parameter/grid_size = Vector2(5, 5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x33uw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vgfkc"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_x33uw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_saacv"]
+shader = ExtResource("20_kin5e")
+shader_parameter/dissolve_amount = 0.5
+shader_parameter/edge_width = 5.0
+shader_parameter/edge_color = Color(1, 0, 0, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_vgfkc")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wb4bw"]
+content_margin_left = 5.0
+content_margin_top = 2.0
+content_margin_right = 5.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 0.509804)
+
+[node name="Main" type="Node2D"]
+
+[node name="Pow" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_vr3kq")
+position = Vector2(86, 82)
+scale = Vector2(128, 128)
+texture = ExtResource("2_pt6sf")
+script = ExtResource("3_01tr2")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="Pow"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pow/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="Desaturate" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_o0j2r")
+position = Vector2(230, 82)
+texture = ExtResource("5_1ecwo")
+script = ExtResource("3_01tr2")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="Desaturate"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Desaturate/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="MultiTexture" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_pxu1l")
+position = Vector2(230, 217)
+texture = ExtResource("7_8socp")
+script = ExtResource("3_01tr2")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="MultiTexture"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MultiTexture/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="Sqrt" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_5o7to")
+position = Vector2(87, 217)
+scale = Vector2(128, 128)
+texture = ExtResource("2_pt6sf")
+script = ExtResource("3_01tr2")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="Sqrt"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sqrt/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="Step" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_41fo0")
+position = Vector2(87, 357)
+scale = Vector2(128, 128)
+texture = ExtResource("2_pt6sf")
+script = ExtResource("3_01tr2")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="Step"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Step/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="MotionBlur" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_t431u")
+position = Vector2(233, 357)
+texture = ExtResource("5_1ecwo")
+script = ExtResource("3_01tr2")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="MotionBlur"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MotionBlur/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="SmoothCircle" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_mo88h")
+position = Vector2(233, 500)
+texture = ExtResource("5_1ecwo")
+script = ExtResource("3_01tr2")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="SmoothCircle"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SmoothCircle/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="DistanceField" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_3r8xu")
+position = Vector2(381, 356)
+texture = ExtResource("5_1ecwo")
+script = ExtResource("3_01tr2")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="DistanceField"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DistanceField/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="HardCircle" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_yo7fu")
+position = Vector2(381, 500)
+texture = ExtResource("5_1ecwo")
+script = ExtResource("3_01tr2")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="HardCircle"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HardCircle/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="FadeHorizontal" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_e30ta")
+position = Vector2(381, 216)
+texture = ExtResource("5_1ecwo")
+script = ExtResource("3_01tr2")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="FadeHorizontal"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FadeHorizontal/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="FadeVertical" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ftyex")
+position = Vector2(381, 82)
+texture = ExtResource("5_1ecwo")
+script = ExtResource("3_01tr2")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="FadeVertical"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FadeVertical/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="Smoothstep" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6o73j")
+position = Vector2(87, 499)
+scale = Vector2(128, 128)
+texture = ExtResource("2_pt6sf")
+script = ExtResource("3_01tr2")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="Smoothstep"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Smoothstep/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="MovingPixels" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_emvss")
+position = Vector2(529, 499)
+scale = Vector2(128, 128)
+texture = ExtResource("2_pt6sf")
+script = ExtResource("3_01tr2")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="MovingPixels"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovingPixels/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="FractalGrid" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_3mr37")
+position = Vector2(529, 357)
+scale = Vector2(128, 128)
+texture = ExtResource("2_pt6sf")
+script = ExtResource("3_01tr2")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="FractalGrid"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FractalGrid/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="FractalCircles" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ue3sb")
+position = Vector2(529, 217)
+scale = Vector2(128, 128)
+texture = ExtResource("2_pt6sf")
+script = ExtResource("3_01tr2")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="FractalCircles"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FractalCircles/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="Dissolve" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_saacv")
+position = Vector2(529, 82)
+texture = ExtResource("5_1ecwo")
+script = ExtResource("3_01tr2")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="Dissolve"]
+scale = Vector2(128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dissolve/Area2D"]
+shape = SubResource("RectangleShape2D_o51gv")
+
+[node name="ShaderLabelController" type="Control" parent="."]
+editor_description = "Displays a shader label when hovering over a tile in-game. Ideally should render on top of all of the shaders."
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("21_xbf5r")
+
+[node name="ShaderLabel" type="RichTextLabel" parent="ShaderLabelController"]
+layout_mode = 0
+offset_right = 101.0
+offset_bottom = 23.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_wb4bw")
+text = "Shader Label"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0

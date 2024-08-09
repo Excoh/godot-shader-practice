@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://c162e2my3i3td"]
+
+[ext_resource type="Shader" path="res://Shaders/2D/full_screen_freeze.gdshader" id="1_5ukwk"]
+[ext_resource type="Texture2D" uid="uid://bb4ndnllmsej6" path="res://Assets/forest_landscape.png" id="2_dx8lv"]
+[ext_resource type="Texture2D" uid="uid://p8oupoh4qjmh" path="res://Assets/freeze_texture.jpg" id="3_52815"]
+[ext_resource type="Script" path="res://Scripts/freeze_controller.gd" id="4_3ek83"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdppn"]
+shader = ExtResource("1_5ukwk")
+shader_parameter/left_step = 0.45
+shader_parameter/right_step = 0.7
+shader_parameter/ice_texture = ExtResource("3_52815")
+
+[node name="FreezeFrameShader" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_dx8lv")
+
+[node name="ScreenFreeze" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_hdppn")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_3ek83")

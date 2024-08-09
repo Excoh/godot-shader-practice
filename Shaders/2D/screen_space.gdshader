@@ -1,17 +1,16 @@
 shader_type canvas_item;
 
-uniform sampler2D screen_texture : hint_screen_texture;
-
-uniform float brightness = 1.0;
-uniform float contrast = 1.0;
-uniform float saturation = 1.0;
+uniform sampler2D screen_texture : hint_screen_texture, filter_linear, repeat_disable;
 
 void fragment() {
 	// Called for every pixel the material is visible on.
-	vec3 c = textureLod(screen_texture, SCREEN_UV, 0.0).rgb;
-	if (c.b >= 0.75) {
-		c.rgb = vec3(0.);
+	// Screen texture is used to grab the viewport texture
+	// and SCREEN_UV is the UV value where that fragment
+	// lies on the screen
+	vec4 c = textureLod(screen_texture, SCREEN_UV, 0.0);
+	if (c.b >= 0.5) {
+		vec4 d = textureLod(screen_texture, SCREEN_UV+vec2(0.01,0.01), 3.0);
+		c.rgb=d.rgb;
 	}
-
-    COLOR.rgb = c;
+    COLOR = c;
 }

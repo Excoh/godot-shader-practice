@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform float dissolve_amount : hint_range(0.,1.) = 0.5;
-uniform float edge_width = 2.0;
+uniform float edge_width = 5.0;
 uniform vec3 edge_color : source_color = vec3(1., 0., 0.);
 uniform sampler2D noise;
 

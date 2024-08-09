@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxfnjs66magw2"]
+
+[ext_resource type="Shader" path="res://Shaders/2D/screen_space.gdshader" id="1_14j1o"]
+[ext_resource type="Texture2D" uid="uid://b3pb34gmh13u8" path="res://Assets/icon.svg" id="2_ba2e6"]
+[ext_resource type="Texture2D" uid="uid://c85ucs11nkc8l" path="res://Assets/white_pixel.png" id="2_tx0pt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ocjc8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jd7cy"]
+shader = ExtResource("1_14j1o")
+
+[node name="ScreenShaders" type="Node2D"]
+material = SubResource("ShaderMaterial_ocjc8")
+
+[node name="DefaultIcon" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(1008, 120)
+texture = ExtResource("2_ba2e6")
+
+[node name="DefaultIcon4" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(615, 237)
+rotation = 2.10506
+texture = ExtResource("2_ba2e6")
+
+[node name="DefaultIcon6" type="Sprite2D" parent="."]
+modulate = Color(1, 0.301961, 0.0431373, 1)
+position = Vector2(94, 123)
+scale = Vector2(1, 1.69531)
+texture = ExtResource("2_ba2e6")
+
+[node name="DefaultIcon5" type="Sprite2D" parent="."]
+position = Vector2(137, 126)
+texture = ExtResource("2_ba2e6")
+
+[node name="DefaultIcon2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(292, 393)
+rotation = 0.539561
+scale = Vector2(1.60575, 1.62875)
+texture = ExtResource("2_ba2e6")
+
+[node name="DefaultIcon3" type="Sprite2D" parent="."]
+position = Vector2(916, 470)
+rotation = -0.346535
+scale = Vector2(1.30222, 1.30222)
+texture = ExtResource("2_ba2e6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_jd7cy")
+offset_left = 255.0
+offset_top = 93.0
+offset_right = 412.0
+offset_bottom = 250.0
+texture = ExtResource("2_tx0pt")

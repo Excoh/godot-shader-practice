@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://xltrcguklxpp"]
+
+[ext_resource type="Texture2D" uid="uid://p8oupoh4qjmh" path="res://Assets/freeze_texture.jpg" id="1_jx3py"]
+
+[node name="Camera2D" type="Camera2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -236.0
+offset_top = -157.0
+offset_right = 304.0
+offset_bottom = 203.0
+scale = Vector2(0.415613, 0.415613)
+texture = ExtResource("1_jx3py")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 9.0
+offset_top = -157.0
+offset_right = 549.0
+offset_bottom = 203.0
+scale = Vector2(0.415613, 0.415613)
+texture = ExtResource("1_jx3py")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 549.0
+offset_bottom = 366.0
+scale = Vector2(0.415613, 0.415613)
+texture = ExtResource("1_jx3py")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+offset_left = -237.0
+offset_top = 6.0
+offset_right = 303.0
+offset_bottom = 366.0
+scale = Vector2(0.415613, 0.415613)
+texture = ExtResource("1_jx3py")
