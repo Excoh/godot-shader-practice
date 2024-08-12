@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbbvmr7i0e34r"]
+
+[ext_resource type="Script" path="res://Scripts/path_controller.gd" id="1_dwu7y"]
+[ext_resource type="Texture2D" uid="uid://b3pb34gmh13u8" path="res://Assets/icon.svg" id="1_oniou"]
+
+[sub_resource type="Curve2D" id="Curve2D_6wpnb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 0, 160, 0, 0, 0, 0, 0, 240, 0)
+}
+point_count = 4
+
+[node name="CameraExample" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_6wpnb")
+script = ExtResource("1_dwu7y")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+loop = false
+
+[node name="Camera2D" type="Camera2D" parent="Path2D/PathFollow2D"]
+zoom = Vector2(8, 8)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_oniou")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1, 0.396078, 1, 1)
+position = Vector2(80, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_oniou")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(0.192157, 1, 1, 1)
+position = Vector2(160, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_oniou")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0.0235294, 1)
+position = Vector2(240, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_oniou")
